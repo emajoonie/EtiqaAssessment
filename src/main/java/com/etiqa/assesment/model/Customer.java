@@ -2,6 +2,7 @@ package com.etiqa.assesment.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,10 +17,12 @@ public class Customer {
     @NotBlank(message="Cannot be blank")
     @Column(name = "First_Name")
     private String firstName="";
-
+    @NotNull(message="Cannot be null")
+    @NotBlank(message="Cannot be blank")
     @Column(name = "Last_Name")
     private String lastName="";
 
+    @Email
     @Column(name = "Email_Office")
     private String emailOffice = "";
     @Column(name = "Email_Personal")

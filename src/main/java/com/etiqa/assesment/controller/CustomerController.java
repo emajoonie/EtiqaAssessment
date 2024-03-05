@@ -41,15 +41,14 @@ public class CustomerController extends BaseController {
     public ResponseEntity<Response<Customer>> createCustomer(@Valid @RequestBody Customer customer) {
         logger.info("Request:"+ dataToString(customer));
         service.createCustomer(customer);
-        return sendSuccessResponse(customer);
-//        return sendSuccessResponse("customer");
+        return sendSuccessResponse(customer,"Successfully added new customer");
     }
 
     @PutMapping("/{customerId}")
-    public ResponseEntity<Response<Customer>> updateCustomer(@PathVariable int customerId, @RequestBody Customer customer) {
+    public ResponseEntity<Response<Customer>> updateCustomer(@PathVariable int customerId,@Valid @RequestBody Customer customer) {
         logger.info("Request:"+ dataToString(customer));
         service.updateCustomer(customerId,customer);
-        return sendSuccessResponse(customer);
+        return sendSuccessResponse(customer,"customerId="+customerId +" successfully updated");
     }
 
     @DeleteMapping("/{customerId}")

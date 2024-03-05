@@ -4,6 +4,7 @@ import com.etiqa.assesment.exceptions.NotFoundException;
 import com.etiqa.assesment.model.Product;
 import com.etiqa.assesment.model.Response;
 import com.etiqa.assesment.service.ProductsService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/product")
 public class ProductController extends BaseController {
-    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 
     @Autowired
@@ -34,30 +35,30 @@ public class ProductController extends BaseController {
         if (service.getProduct(bookId) != null)
             return sendSuccessResponse(products);
         else
-            throw new NotFoundException("No Customer ID Found");
+            throw new NotFoundException("No bookID Found");
 
     }
 
     @PutMapping("/{bookId}")
-    public ResponseEntity<Response<Product>> updateProduct(@RequestBody Product products, @PathVariable int bookId){
+    public ResponseEntity<Response<Product>> updateProduct(@Valid @RequestBody Product products, @PathVariable int bookId){
         logger.info("Request:"+ dataToString(products));
         service.updateProduct(bookId,products);
-        return sendSuccessResponse(products);
+        return sendSuccessResponse(products,"bookId="+bookId+" successfully updated");
 
     }
 
     @PostMapping
-    public ResponseEntity<Response<Product>> createProducts(@RequestBody Product products) {
+    public ResponseEntity<Response<Product>> createProducts(@Valid @RequestBody Product products) {
         logger.info("Request:"+ dataToString(products));
         service.createProduct(products);
-        return sendSuccessResponse(products);
+        return sendSuccessResponse(products, "Successfully added new product");
     }
 
     @DeleteMapping("/{bookId}")
     public ResponseEntity<Response<Void>> deleteProduct(int bookId) {
         logger.info("Request:bookId"+ bookId);
         service.deleteProduct(bookId);
-        return sendSuccessResponse("Customer deleted successfully");
+        return sendSuccessResponse("Product deleted successfully");
     }
 
 

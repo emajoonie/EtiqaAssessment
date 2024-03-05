@@ -1,6 +1,8 @@
 package com.etiqa.assesment.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Product {
@@ -9,7 +11,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Book_Id")
     private int bookId = 0;
-
+    @NotNull(message="Cannot be null")
+    @NotBlank(message="Cannot be blank")
     @Column(name = "Book_Title")
     private String bookTitle = "";
 
