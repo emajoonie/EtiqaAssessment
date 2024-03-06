@@ -11,7 +11,7 @@ The Assessment Project is a Spring Boot application designed to showcase my prof
 - MySQL
 - Spring Data JPA
 - Spring Web
-- MySQL Connector/J
+- MySQL
 - Spring Boot DevTools
 - Springdoc OpenAPI (Swagger)
 - Logback
