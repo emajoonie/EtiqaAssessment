@@ -57,4 +57,8 @@ public class CustomerController extends BaseController {
         service.deleteCustomer(customerId);
         return sendSuccessResponse("Customer deleted successfully");
     }
+
+    public void getName(){
+        
+    }
 }
